@@ -1,15 +1,27 @@
 const express = require('express');
-const cors = require('cors');
+const http = require('http');
+const socketIo = require('socket.io');
 
 const app = express();
-
-// Enable CORS for all routes
-app.use(cors({
-  origin: 'https://your-github-pages-subdomain.github.io',
-  credentials: true
-}));
-
-// Your other routes and API endpoints here
+const server = http.createServer(app);
+const io = socketIo(server);
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+io.on('connection', (socket) => {
+  console.log('New client connected');
+
+  socket.on('chat message', (msg) => {
+    io.emit('chat message', msg);
+  });
+
+  socket.on('disconnect', () => {
+    console.log('Client disconnected');
+  });
+});
+
+app.use(express.static('public'));
+
+server.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
