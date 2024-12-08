@@ -104,8 +104,10 @@
 
     <div class="right-column">
       <h1>Suggestion Box</h1>
-    <textarea id="suggestionBox" rows="5" cols="40" placeholder="Enter your suggestion here..."></textarea>
-    <button onclick="addSuggestion()">Submit</button>
+    <form id="suggestionForm" action="save_suggestions.php" method="post">
+        <textarea id="suggestionBox" rows="5" cols="40" name="suggestion" placeholder="Enter your suggestion here..."></textarea>
+        <button type="submit">Submit</button>
+    </form>
     <div id="suggestions"></div>
 
     <script src="script.js"></script>
