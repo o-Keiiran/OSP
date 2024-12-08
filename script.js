@@ -23,25 +23,3 @@ function displaySuggestions() {
         suggestionsDiv.appendChild(p);
     }
 }
-
-const express = require('express');
-const app = express();
-
-app.use(express.json());
-
-app.post('/process', (req, res) => {
-    const { text } = req.body;
-    
-    // Simulating suggestion generation
-    const suggestions = [
-        `Suggestion ${Math.floor(Math.random() * 10)}`,
-        `Another suggestion`,
-        `Yet another one`
-    ];
-    
-    res.json({ suggestions });
-});
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
