@@ -8,22 +8,9 @@ function addSuggestion() {
         suggestions.push(suggestion);
         suggestionBox.value = '';
         
-        // Save to txt file
-        saveToTextFile(suggestion);
-
-        // Display suggestion
-        displaySuggestions();
+        // Submit form to save suggestion
+        document.getElementById('suggestionForm').submit();
     }
-}
-
-function saveToTextFile(text) {
-    const blob = new Blob([text], {type: 'text/plain'});
-    const url = URL.createObjectURL(blob);
-    
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'suggestions.txt';
-    a.click();
 }
 
 function displaySuggestions() {
@@ -36,3 +23,4 @@ function displaySuggestions() {
         suggestionsDiv.appendChild(p);
     }
 }
+
