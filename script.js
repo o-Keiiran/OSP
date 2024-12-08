@@ -23,4 +23,3 @@ function displaySuggestions() {
         suggestionsDiv.appendChild(p);
     }
 }
-
