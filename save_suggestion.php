@@ -1,6 +1,6 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $suggestion = $_POST['suggestion'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET') {
+    $suggestion = isset($_POST['suggestion']) ? $_POST['suggestion'] : (isset($_GET['suggestion']) ? $_GET['suggestion'] : '');
     
     // Open the file in append mode
     $filename = 'suggestions.txt';
@@ -17,3 +17,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+
