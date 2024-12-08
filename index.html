@@ -1,121 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Oshi No Ko</title>
-  <style>
-    body {
-      background-color: #5ae185;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clickabe Dropdown Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
 
-    main {
-      display: flex;
-      flex-direction: row;
-      background: white;
-      margin: 0;
-      padding: 0;
-    }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
 
-    .left-column,
-    .right-column {
-      flex: 1; /* This will make both columns take up equal space */
-    }
+        .dropdown-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            font-size: 17px;
+        }
 
-    .left-column {
-      display: flex;
-      flex-direction: column;
-      padding: 20px;
-    }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            padding: 12px 16px;
+        }
 
-    .right-column {
-      display: flex;
-      flex-direction: column;
-      padding: 20px;
-    }
-
-    .content {
-      background-color: white;
-      margin-bottom: 20px;
-    }
-
-    h2 {
-      font-size: large;
-      cursor: pointer;
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: #f9f9f9;
-      min-width: 160px;
-      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-      z-index: 1;
-      padding: 12px 16px;
-    }
-
-    .show {
-      display: block;
-    }
-  </style>
+        .show {
+            display: block;
+        }
+    </style>
 </head>
 <body>
-  <main>
-    <div class="left-column">
-      <section class="content">
-        <!-- Existing content goes here -->
-        <h2><span>Nokotan</span></h2>
-        <ul class="dropdown-content">
-          <li>Shika Shika</li>
-          <li>Noko Noko</li>
-        </ul>
+    <h1>Clickabe Dropdown Menu</h1>
 
-        <h2>Koshitantan</h2>
-        <ul class="dropdown-content">
-          <li>arrura</li>
-        </ul>
-
-        <h2>Anko</h2>
-        <ul class="dropdown-content">
-          <li>do you know da wae</li>
-        </ul>
-
-        <h2>Bashame</h2>
-        <ul class="dropdown-content">
-          <li>Bashame Bashame Meme</li>
-        </ul>
-      </section>
+    <div class="dropdown">
+        <button class="dropdown-button">Select Option</button>
+        <div class="dropdown-content">
+            <a href="#">Option 1</a>
+            <a href="#">Option 2</a>
+            <a href="#">Option 3</a>
+        </div>
     </div>
 
-    <div class="right-column">
-      <!-- New section goes here -->
-      <h2>New Section</h2>
-      <p>This is the new section that will sit next to the existing content.</p>
-    </div>
-  </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdowns = document.querySelectorAll('.dropdown-content');
 
-  <script>
-    const dropdowns = document.querySelectorAll('.dropdown-content');
+            dropdowns.forEach(dropdown => {
+                const button = dropdown.previousElementSibling;
+                
+                button.addEventListener('click', () => {
+                    dropdown.classList.toggle('show');
+                    
+                    // Close other dropdowns when one opens
+                    dropdowns.forEach(d => {
+                        if (d !== dropdown) {
+                            d.classList.remove('show');
+                        }
+                    });
+                });
 
-    dropdowns.forEach(dropdown => {
-      const header = dropdown.previousElementSibling;
-      
-      header.addEventListener('click', () => {
-        dropdown.classList.toggle('show');
-        
-        // Close other dropdowns when one opens
-        dropdowns.forEach(d => {
-          if (d !== dropdown) {
-            d.classList.remove('show');
-          }
+                // Close dropdown when clicking outside
+                document.addEventListener('click', (event) => {
+                    if (!event.target.matches('.dropdown-button')) {
+                        dropdown.classList.remove('show');
+                    }
+                });
+            });
         });
-      });
-    });
-
-    // Close dropdown when clicking outside
-    document.addEventListener('click', (event) => {
-      if (!event.target.matches('.dropdown-content')) {
-        dropdowns.forEach(dropdown => dropdown.classList.remove('show'));
-      }
-    });
-  </script>
+    </script>
 </body>
 </html>
