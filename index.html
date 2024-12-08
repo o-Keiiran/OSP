@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Oshi No Ko</title>
-  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
   <style>
     main {
       display: flex;
@@ -106,29 +106,26 @@
     </div>
 
     <div class="right-column">
-       <h1>Real-time Chat</h1>
-    <ul id="messages"></ul>
-    <form id="chat-form">
+       <div id="chat-container">
+        <h1>Real-time Chat</h1>
+        <div id="messages"></div>
         <input type="text" id="message-input" placeholder="Type your message...">
-        <button type="submit">Send</button>
-    </form>
+        <button onclick="sendMessage()">Send</button>
+    </div>
 
     <script>
-        const socket = io();
+        const socket = io('http://localhost:9000', { transports: ['websocket'] });
         const messagesContainer = document.getElementById('messages');
-        const form = document.getElementById('chat-form');
+        const input = document.getElementById('message-input');
 
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const messageInput = document.getElementById('message-input');
-            if (messageInput.value.trim() !== '') {
-                socket.emit('chat message', messageInput.value);
-                messageInput.value = '';
-            }
-        });
+        function sendMessage() {
+            const message = input.value;
+            socket.emit('chat message', message);
+            input.value = '';
+        }
 
         socket.on('chat message', (msg) => {
-            const messageElement = document.createElement('li');
+            const messageElement = document.createElement('div');
             messageElement.textContent = msg;
             messagesContainer.appendChild(messageElement);
         });
