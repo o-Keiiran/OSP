@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Oshi No Ko</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
     main {
       display: flex;
@@ -103,15 +106,36 @@
     </div>
 
     <div class="right-column">
-      <h1>Suggestion Box</h1>
-   <form id="suggestionForm" action="save_suggestions.php" method="post">
-    <textarea id="suggestionBox" rows="5" cols="40" name="suggestion" placeholder="Enter your suggestion here..."></textarea>
-    <button type="submit">Submit</button>
-  </form>
+      <h1>Suggestion Form</h1>
+    <form id="suggestionForm">
+        <textarea id="inputText" rows="5" cols="50" placeholder="Enter your text here..."></textarea>
+        <button type="submit">Submit</button>
+    </form>
 
-    <div id="suggestions"></div>
+    <div id="result"></div>
 
-    <script src="script.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#suggestionForm').on('submit', function(e) {
+                e.preventDefault();
+                
+                var inputText = $('#inputText').val();
+                
+                $.ajax({
+                    url: 'https://your-server-url.com/process',
+                    method: 'POST',
+                    data: { text: inputText },
+                    dataType: 'json',
+                    success: function(response) {
+                        $('#result').html('<h2>Suggestions:</h2><ul>' + response.suggestions.join('</li><li>') + '</ul>');
+                    },
+                    error: function(xhr, status, error) {
+                        $('#result').html('<p>Error processing suggestion.</p>');
+                    }
+                });
+            });
+        });
+    </script>
     </div>
   </main>
 </body>
