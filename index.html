@@ -39,20 +39,10 @@
 
     h2 {
       font-size: large;
-      cursor: pointer;
     }
 
     p {
       font-size: small;
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: #f9f9f9;
-      min-width: 160px;
-      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-      z-index: 1;
     }
   </style>
 </head>
@@ -62,24 +52,34 @@
       <section class="content">
         <!-- Existing content goes here -->
         <h2><span>Nokotan</span></h2>
-        <ul class="dropdown-content">
-          <li><p>Shika Shika</p></li>
-          <li><p>Noko Noko</p></li>
+        <ul>
+          <li>
+            <p>Shika Shika</p>
+          </li>
+          <li>
+            <p>Noko Noko</p>
+          </li>
         </ul>
 
         <h2>Koshitantan</h2>
-        <ul class="dropdown-content">
-          <li><p>arrura</p></li>
+        <ul>
+          <li>
+            <p>arrura</p>
+          </li>
         </ul>
 
         <h2>Anko</h2>
-        <ul class="dropdown-content">
-          <li><p>do you know da wae</p></li>
+        <ul>
+          <li>
+            <p>do you know da wae</p>
+          </li>
         </ul>
 
         <h2>Bashame</h2>
-        <ul class="dropdown-content">
-          <li><p>Bashame Bashame Meme</p></li>
+        <ul>
+          <li>
+            <p>Bashame Bashame Meme</p>
+          </li>
         </ul>
       </section>
     </div>
@@ -90,37 +90,5 @@
       <p>This is the new section that will sit next to the existing content.</p>
     </div>
   </main>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const dropdowns = document.querySelectorAll('.dropdown-content');
-      
-      dropdowns.forEach(dropdown => {
-        const header = dropdown.previousElementSibling;
-        
-        header.addEventListener('click', () => {
-          dropdown.classList.toggle('show');
-          
-          // Close other dropdowns when one opens
-          dropdowns.forEach(d => {
-            if (d !== dropdown) {
-              d.classList.remove('show');
-            }
-          });
-        });
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', (event) => {
-          if (!event.target.closest('.dropdown-content')) {
-            dropdown.classList.remove('show');
-          }
-        });
-      });
-
-      console.log('JavaScript executed');
-    });
-
-    console.log('DOM fully loaded');
-  </script>
 </body>
 </html>
