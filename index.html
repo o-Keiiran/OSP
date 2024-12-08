@@ -3,10 +3,6 @@
 <head>
   <title>Oshi No Ko</title>
   <style>
-    body {
-      background-color: #5ae185;
-    }
-
     main {
       display: flex;
       flex-direction: row;
@@ -52,6 +48,20 @@
     p {
       font-size: small;
     }
+    body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #5ae185;
+        }
+        #suggestions {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 20px;
+            min-height: 200px;
+            overflow-y: auto;
+        }
   </style>
 </head>
 <body>
@@ -93,9 +103,12 @@
     </div>
 
     <div class="right-column">
-      <!-- New section goes here -->
-      <h2>New Section</h2>
-      <p>This is the new section that will sit next to the existing content.</p>
+      <h1>Suggestion Box</h1>
+    <textarea id="suggestionBox" rows="5" cols="40" placeholder="Enter your suggestion here..."></textarea>
+    <button onclick="addSuggestion()">Submit</button>
+    <div id="suggestions"></div>
+
+    <script src="script.js"></script>
     </div>
   </main>
 </body>
