@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Oshi No Ko</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
   <style>
+    body {
+      background-color: #5ae185;
+    }
+
     main {
       display: flex;
       flex-direction: row;
@@ -36,14 +37,6 @@
       margin-bottom: 20px;
     }
 
-    ul {
-      list-style-type:none;
-      text-align: -webkit-match-parent;
-    }
-    il {
-      list-style-type:none;
-      text-align: -webkit-match-parent;
-    }
     h2 {
       font-size: large;
     }
@@ -51,20 +44,9 @@
     p {
       font-size: small;
     }
-    body {
-            font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #5ae185;
-        }
-        #suggestions {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin-top: 20px;
-            min-height: 200px;
-            overflow-y: auto;
-        }
+    li {
+      list-style-type: none;
+    }
   </style>
 </head>
 <body>
@@ -79,13 +61,15 @@
           </li>
           <li>
             <p>Noko Noko</p>
+            <img src="my-deer-friend-nokotan-episode-6-nokotan.avif" height="50" width="50">
           </li>
         </ul>
 
         <h2>Koshitantan</h2>
         <ul>
           <li>
-            <p>arrura</p>
+            <p>errrarrahhhhh</p>
+            <img src="d17d12b90df40d068a5de049e1153069.jpg" height="50" width="50">
           </li>
         </ul>
 
@@ -93,6 +77,7 @@
         <ul>
           <li>
             <p>do you know da wae</p>
+            <img src="images.jfif" height="50" width="50">
           </li>
         </ul>
 
@@ -100,36 +85,36 @@
         <ul>
           <li>
             <p>Bashame Bashame Meme</p>
+            <img src="shikanoko-nokonoko.gif" height="50" width="50">
           </li>
         </ul>
       </section>
     </div>
 
     <div class="right-column">
-       <div id="chat-container">
-        <h1>Real-time Chat</h1>
-        <div id="messages"></div>
-        <input type="text" id="message-input" placeholder="Type your message...">
-        <button onclick="sendMessage()">Send</button>
+      <!-- New section goes here -->
+      <h2>Ai</h2>
+      <ul>
+        <li>
+      <p>Idol Sama</p>
+      <img src="MV5BYzgzZTYxZjMtN2ZkOS00NjE0LTkzYzYtZDYzMWQyNTFkZTQ5XkEyXkFqcGdeQXVyMTYzODYxMjgz._V1_.jpg" height="50" width="50">
+        </li>
+      </ul>
+      <h2>Aqua</h2>
+      <ul>
+        <li>
+          <p>I've never been such a liar</p>
+          <img src="aqua-in-oshi-no-ko.avif" height="50" width="50">
+        </li>
+      </ul>
+      <h2>Ruby</h2>
+      <ul>
+        <li>
+          <p>Sign is b</p>
+          <img src="oshi-no-ko-ruby.avif" height="50" width="50">
+        </li>
+      </ul>
     </div>
-
-    <script>
-        const socket = io('http://localhost:9000', { transports: ['websocket'] });
-        const messagesContainer = document.getElementById('messages');
-        const input = document.getElementById('message-input');
-
-        function sendMessage() {
-            const message = input.value;
-            socket.emit('chat message', message);
-            input.value = '';
-        }
-
-        socket.on('chat message', (msg) => {
-            const messageElement = document.createElement('div');
-            messageElement.textContent = msg;
-            messagesContainer.appendChild(messageElement);
-        });
-    </script>
   </main>
 </body>
 </html>
